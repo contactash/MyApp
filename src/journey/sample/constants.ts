@@ -1,0 +1,3 @@
+export const RECEIVE_SAMPLE = 'RECEIVE_SAMPLE';
+export const LOAD_SAMPLE = 'LOAD_SAMPLE';
+export const ERROR_SAMPLE = 'ERROR_SAMPLE';

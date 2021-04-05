@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 type Props = {
   title: string;
@@ -7,16 +7,17 @@ type Props = {
 
 const Counter: React.FC<Props> = ({title}: Props) => {
   const [count, setCount] = useState<number>(0);
+
+  function increment() {
+    return setCount(count + 1);
+  }
+
   return (
     <View style={styles.container}>
       <Text>{title}</Text>
       <Text>{count}</Text>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            setCount(count + 1);
-          }}
-          style={styles.button}>
+        <TouchableOpacity onPress={increment} style={styles.button}>
           <Text>{'Increment'}</Text>
         </TouchableOpacity>
         <TouchableOpacity

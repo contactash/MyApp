@@ -1,35 +1,39 @@
 import React from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  View,
   StatusBar,
+  StyleSheet,
+  View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Counter from './Counter';
 import ErrorBoundary from './ErrorBoundary';
-import GenericErrorScreen from './GenericErrorScreen';
+import {Provider} from 'react-redux';
+import {configureStore} from './main';
+import Sample from './journey/sample';
 
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
-  // return <GenericErrorScreen />;
-
+  const store = configureStore();
   return (
     <ErrorBoundary>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Counter title={'Counter'} />
+      <Provider store={store}>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}>
+            <View style={styles.body}>
+              <View style={styles.sectionContainer}>
+                <Counter title={'Counter'} />
+              </View>
+              <Sample />
             </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+          </ScrollView>
+        </SafeAreaView>
+      </Provider>
     </ErrorBoundary>
   );
 };
